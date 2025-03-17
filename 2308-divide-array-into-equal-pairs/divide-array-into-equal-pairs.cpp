@@ -25,17 +25,10 @@ public:
        
        for(int i=0 ; i<htable.size() ; i++)
        {
-            int ko = htable[i];
-
-            if(ko == 0)
-            {
-                continue;
-            }
-
-            if(ko%2 != 0)
-            {
-                return false;
-            }
+           if(htable[i]%2 !=0)
+           {
+            return false;
+           }
        }
 
 
