@@ -8,13 +8,7 @@ public:
         int r = 0;
         int n = s.length();
 
-        if(s.length() == 0)
-        {
-            return 0;
-        }
-
-
-        int maxu = INT_MIN;
+        int maxu = 0;
 
         while(r<n)
         {
