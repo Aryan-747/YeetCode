@@ -1,33 +1,24 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        
-       int hmap[255];
 
-       for(int i=0 ; i<255 ; i++)
-       {
-        hmap[i] = -1;
-       }
+        vector<int> hmap(256,-1);
 
-       if(s == "")
-       {
-        return 0;
-       }
-
-       if(s == " ")
-       {
-        return 1;
-       }
-
-        int maxlen = INT_MIN;
-        int l=0;
-        int len = s.length();
+        int l = 0;
         int r = 0;
+        int n = s.length();
 
-        while(r<len)
+        if(s.length() == 0)
         {
+            return 0;
+        }
 
-            if(hmap[s[r]]!=-1)
+
+        int maxu = INT_MIN;
+
+        while(r<n)
+        {
+            if(hmap[s[r]]!= -1)
             {
                 if(hmap[s[r]]>=l)
                 {
@@ -35,13 +26,14 @@ public:
                 }
             }
 
+            int len = r-l+1;
+
+            maxu = max(maxu,len);
 
             hmap[s[r]] = r;
-            maxlen = max(maxlen,(r-l)+1);
             r++;
-
         }
-
-        return maxlen;
+        
+        return maxu;
     }
 };
