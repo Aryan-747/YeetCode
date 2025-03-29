@@ -10,6 +10,7 @@ public:
 
         int maxconsec = INT_MIN;
 
+        // O(n) complexity)
         while(r<n)
         {
             if(nums[r] == 0)
