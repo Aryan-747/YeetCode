@@ -15,13 +15,16 @@ public:
             left++;
         }
 
+
         maxer = max(sum,maxer);
 
-        for(int i=k-1 ; i>=0 ; i--)
+        while(left-1>=0)
         {
-            sum -= cardPoints[i];
-            sum += cardPoints[right];
+            sum-= cardPoints[left-1];
+            sum+= cardPoints[right];
+
             maxer = max(maxer,sum);
+            left--;
             right--;
         }
 
