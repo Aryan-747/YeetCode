@@ -4,10 +4,10 @@ public:
 
         int suffix = 1;
         int prefix = 1;
-
-        int n = nums.size()-1;
         
         int maxprod = INT_MIN;
+
+        int n = nums.size();
 
         for(int i=0 ; i<nums.size() ; i++)
         {
@@ -22,8 +22,7 @@ public:
             }
 
             prefix *= nums[i];
-            suffix *= nums[n];
-            n--;
+            suffix *= nums[n-i-1];
 
             maxprod = max(maxprod,max(prefix,suffix));
         }
