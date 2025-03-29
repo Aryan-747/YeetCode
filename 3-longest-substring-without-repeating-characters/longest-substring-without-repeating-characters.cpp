@@ -2,17 +2,16 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
 
-        vector<int> hmap(256,-1);
-
-        int l = 0;
-        int r = 0;
+        int l=0;
+        int r=0;
         int n = s.length();
+        int maxsubsize = INT_MIN;
 
-        int maxu = 0;
+        vector<int> hmap(256,-1);
 
         while(r<n)
         {
-            if(hmap[s[r]]!= -1)
+            if(hmap[s[r]]!=-1)
             {
                 if(hmap[s[r]]>=l)
                 {
@@ -20,14 +19,18 @@ public:
                 }
             }
 
-            int len = r-l+1;
-
-            maxu = max(maxu,len);
-
+            int maxu = r-l+1;
+            maxsubsize = max(maxu,maxsubsize);
             hmap[s[r]] = r;
             r++;
         }
+
+        if(maxsubsize == INT_MIN)
+        {
+            return 0;
+        }
+
+        return maxsubsize;
         
-        return maxu;
     }
 };
