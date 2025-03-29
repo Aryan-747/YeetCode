@@ -16,7 +16,6 @@ public:
             {
                 zeroes++;
             }
-            r++;
 
             while(zeroes>k)
             {
@@ -27,8 +26,9 @@ public:
                 l++;
             }
 
-            int len = r-l;
+            int len = r-l+1;
             maxconsec = max(len,maxconsec);
+            r++;
         }
         
         return maxconsec;
