@@ -11,6 +11,11 @@ public:
 
         while(r<n)
         {
+
+            int maxu = r-l+1;
+            maxsubsize = max(maxu,maxsubsize);
+            hmap[s[r]] = r;
+            r++;
             if(hmap[s[r]]!=-1)
             {
                 if(hmap[s[r]]>=l)
@@ -19,10 +24,6 @@ public:
                 }
             }
 
-            int maxu = r-l+1;
-            maxsubsize = max(maxu,maxsubsize);
-            hmap[s[r]] = r;
-            r++;
         }
 
         if(maxsubsize == INT_MIN)
