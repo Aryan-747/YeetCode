@@ -7,22 +7,21 @@ public:
 
         int maxer = 0;
 
-        int lsum = 0;
-        int rsum = 0;
+        int sum = 0;
 
         while(left<k)
         {
-            lsum+=cardPoints[left];
+            sum+=cardPoints[left];
             left++;
         }
 
-        maxer = max(lsum,maxer);
+        maxer = max(sum,maxer);
 
         for(int i=k-1 ; i>=0 ; i--)
         {
-            lsum -= cardPoints[i];
-            rsum += cardPoints[right];
-            maxer = max(maxer,lsum+rsum);
+            sum -= cardPoints[i];
+            sum += cardPoints[right];
+            maxer = max(maxer,sum);
             right--;
         }
 
