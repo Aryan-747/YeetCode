@@ -17,7 +17,7 @@ public:
                 zeroes++;
             }
 
-            while(zeroes>k)
+            if(zeroes>k)
             {
                 if(nums[l] == 0)
                 {
