@@ -17,10 +17,10 @@ public:
 
         while(r<n)
         {
-            heshmap[s[r]-'A']++;
+            heshmap[s[r]-'A']++;     
 
             len = r-l+1;
-            maxfreq = max(maxfreq,heshmap[s[r]-'A']);
+            maxfreq = max(maxfreq,heshmap[s[r]-'A']);   
             
             if((len-maxfreq)>k)
             {
