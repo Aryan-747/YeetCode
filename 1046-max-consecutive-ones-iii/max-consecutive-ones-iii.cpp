@@ -1,17 +1,16 @@
 class Solution {
 public:
     int longestOnes(vector<int>& nums, int k) {
-        
-        
-        int l =0;
-        int r =0;
 
-        int n = nums.size();
+        int l=0;
+        int r=0;
+        int n=nums.size();
         int zeroes = 0;
-        int maxer = INT_MIN;
+        int longest = 0;
 
         while(r<n)
         {
+
             if(nums[r] == 0)
             {
                 zeroes++;
@@ -27,11 +26,12 @@ public:
             }
 
             int len = r-l+1;
-            maxer = max(maxer,len);
+            longest = max(longest,len);
             r++;
         }
-        
 
-        return maxer;
+        return longest;
+
+        
     }
 };
