@@ -1,7 +1,7 @@
 class Solution {
 public:
 
-    int toofun(vector<int> &nums, int goal)
+    int toof(vector<int> &nums, int goal)
     {
         if(goal<0)
         {
@@ -10,9 +10,9 @@ public:
 
         int l=0;
         int r=0;
-        int n=nums.size();
-        int maxlen = 0;
-        int sum = 0;
+        int n = nums.size();
+        int numbe =0;
+        int sum =0;
 
         while(r<n)
         {
@@ -25,20 +25,23 @@ public:
             }
 
             int len = r-l+1;
-            maxlen +=len;
+            numbe+=len;
             r++;
         }
 
-        return maxlen;
+        return numbe;
+
 
 
     }
 
+
+
     int numSubarraysWithSum(vector<int>& nums, int goal) {
 
-        int final = toofun(nums,goal) - toofun(nums,goal-1);
+        int finol = toof(nums,goal) - toof(nums,goal-1);
 
-        return final;
+        return finol;
         
     }
 };

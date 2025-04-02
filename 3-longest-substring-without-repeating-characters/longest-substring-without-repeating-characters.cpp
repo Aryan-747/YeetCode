@@ -2,36 +2,36 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
 
+        vector<int> mapi(256,-1);
+
         int l=0;
         int r=0;
-        int n = s.length();
-        int maxsubsize = INT_MIN;
+        int maxlen = 0;
 
-        vector<int> hmap(256,-1);
+        int n = s.length();
 
         while(r<n)
         {
 
-            int maxu = r-l+1;
-            maxsubsize = max(maxu,maxsubsize);
-            hmap[s[r]] = r;
-            r++;
-            if(hmap[s[r]]!=-1)
+            if(mapi[s[r]!=-1])
             {
-                if(hmap[s[r]]>=l)
+                if(mapi[s[r]]>=l)
                 {
-                    l = hmap[s[r]]+1;
+                    l = mapi[s[r]]+1;
                 }
             }
 
+            int len = r-l+1;
+            maxlen = max(maxlen,len);
+            mapi[s[r]] = r;
+            r++;
         }
 
-        if(maxsubsize == INT_MIN)
+        if(maxlen == INT_MIN)
         {
             return 0;
         }
 
-        return maxsubsize;
-        
+        return maxlen;        
     }
 };
