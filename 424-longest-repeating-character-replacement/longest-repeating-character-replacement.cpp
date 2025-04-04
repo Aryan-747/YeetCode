@@ -18,7 +18,7 @@ public:
                 hmap[s[r]-'A']++;
                 maxfreq = max(maxfreq,hmap[s[r]-'A']);
                 len = r-l+1;
-
+        
                 if(len-maxfreq>k)
                 {
                     hmap[s[l]-'A']--;
