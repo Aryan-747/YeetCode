@@ -2,34 +2,37 @@ class Solution {
 public:
     int characterReplacement(string s, int k) {
 
-            int r=0;
-            int l=0;
-            int n=s.length();
-            int len=0;
-            
-            vector<int> hmap(26,0);
+        int l = 0;
+        int r = 0;
+        int n = s.length();
+        map<int,int> m1;
+        int longest = 0;
+        int maxfreq = 0;
 
-            int maxfreq =0;
-            int maxlen = 0;
+        while(r<n)
+        {
 
-            while(r<n)
+            m1[s[r]]++;
+            maxfreq = max(maxfreq,m1[s[r]]);
+            int len = r-l+1;
+
+            if((len-maxfreq)>k)
             {
+                m1[s[l]]--;
 
-                hmap[s[r]-'A']++;
-                maxfreq = max(maxfreq,hmap[s[r]-'A']);
-                len = r-l+1;
-        
-                if(len-maxfreq>k)
+                if(m1[s[l]] == 0)
                 {
-                    hmap[s[l]-'A']--;
-                    l++;
+                    m1.erase(s[l]);
                 }
-
-                len = r-l+1;
-                maxlen = max(maxlen,len);
-                r++;
+                l++;
             }
 
-            return maxlen;
+            len = r-l+1;
+            longest = max(longest,len);
+            r++;
+        }
+
+        return longest;
+
     }
 };
