@@ -15,7 +15,7 @@ public:
             m1[s[r]]++;
             maxfreq = max(maxfreq,m1[s[r]]);
             int len = r-l+1;
-
+            
             if((len-maxfreq)>k)
             {
                 m1[s[l]]--;
