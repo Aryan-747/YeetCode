@@ -1,19 +1,20 @@
 class Solution {
 public:
 
-
     int toofun(vector<int> &nums, int k)
     {
-        if(k<=0)
+        if(k<0)
         {
             return 0;
         }
 
-        int l =0;
-        int r =0;
+        int l = 0;
+        int r = 0;
+        int n = nums.size();
+        int len = 0;
+        int numof = 0;
+        
         map<int,int> m1;
-        int n= nums.size();
-        int tot = 0;
 
         while(r<n)
         {
@@ -30,13 +31,15 @@ public:
                 l++;
             }
 
-            int len = r-l+1;
-            tot+=len;
+            len = r-l+1;
+            numof+=len;
             r++;
         }
 
-        return tot;
+        return numof;
+
     }
+
 
 
 
