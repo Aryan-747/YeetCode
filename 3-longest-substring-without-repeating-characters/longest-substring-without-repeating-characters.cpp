@@ -1,28 +1,36 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
+
         int l=0;
         int r=0;
+        int maxlen = INT_MIN;
         int n=s.length();
-        int maxlen = 0;
-        vector<int> heshmap(256,-1);
+        vector<int> heshmep(256,-1);
 
         while(r<n)
         {
-            if(heshmap[s[r]]!=-1)
+
+            if(heshmep[s[r]]!=-1)
             {
-                if(heshmap[s[r]]>=l)
+                if(heshmep[s[r]]>=l)
                 {
-                    l = heshmap[s[r]]+1;
+                    l = heshmep[s[r]]+1;
                 }
             }
 
             int len = r-l+1;
             maxlen = max(maxlen,len);
-            heshmap[s[r]] = r;
+            heshmep[s[r]] = r;
             r++;
         }
-        
+
+        if(maxlen == INT_MIN)
+        {
+            return 0;
+        }
+
         return maxlen;
+        
     }
 };
