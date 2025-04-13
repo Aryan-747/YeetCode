@@ -12,9 +12,9 @@ public:
 
             if(m3[nums[r]]>=2)
             {
-                for(int i=0 ; i<nums.size(); i++)
+                for(int i=0 ; i<r; i++)
                 {
-                    if(nums[i] == nums[r] && i!=r)
+                    if(nums[i] == nums[r])
                     {
                         if(abs(i-r)<=k)
                         {
