@@ -1,38 +1,43 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        int maxfreq = 0;
-        map<char,int> fmap;
 
-        int l =0;
-        int r =0;
-        int n =s.length();
+        int l = 0;
+        int r = 0;
+        int n = s.length();
+        int maxfreq = 0;
         int len = 0;
-        int maxlen = 0;
+
+        map<int,int> Fmap;
+
+        int maxlen = INT_MIN;
 
         while(r<n)
         {
-            fmap[s[r]]++;
-            maxfreq = max(maxfreq,fmap[s[r]]);
+            Fmap[s[r]]++;
             len = r-l+1;
-
-            while(len-maxfreq>k)
+            maxfreq = max(maxfreq,Fmap[s[r]]);
+            if(len-maxfreq>k)
             {
-                fmap[s[l]]--;
+                Fmap[s[l]]--;
 
-                if(fmap[s[l]] == 0)
+                if(Fmap[s[l]] == 0)
                 {
-                    fmap.erase(s[l]);
-                }
+                    Fmap.erase(s[l]);
+                } 
                 l++;
-
-                len = r-l+1;
             }
 
-            maxlen = max(len,maxlen);
+            len = r-l+1;
+            maxlen = max(maxlen,len);
             r++;
         }
 
+        if(maxlen == INT_MIN)
+        {
+            return -1;
+        }
+        
         return maxlen;
         
     }
