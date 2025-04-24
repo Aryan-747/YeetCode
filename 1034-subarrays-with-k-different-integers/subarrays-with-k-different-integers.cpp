@@ -36,9 +36,6 @@ public:
 
     }
 
-
-
-
     int subarraysWithKDistinct(vector<int>& nums, int k) {
 
         int finoyl = toofun(nums,k) - toofun(nums,k-1);
