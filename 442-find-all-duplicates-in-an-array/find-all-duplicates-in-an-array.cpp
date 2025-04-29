@@ -5,7 +5,7 @@ public:
 
         // TC O(2n)
         // SC O(n);
-        
+
         vector<int> hesh(nums.size()+1,0);
 
         for(int i=0 ; i<nums.size(); i++)
