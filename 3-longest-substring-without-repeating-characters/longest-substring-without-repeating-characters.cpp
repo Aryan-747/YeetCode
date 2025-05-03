@@ -10,7 +10,6 @@ public:
 
         while(r<n)
         {
-
             if(heshmep[s[r]]!=-1)
             {
                 if(heshmep[s[r]]>=l)
