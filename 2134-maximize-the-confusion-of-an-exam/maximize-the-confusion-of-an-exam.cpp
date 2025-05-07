@@ -1,31 +1,25 @@
 class Solution {
 public:
     int maxConsecutiveAnswers(string answerKey, int k) {
-        
-        int maxfreq = 0;
+
         int l = 0;
         int r = 0;
-        int n = answerKey.size();
-        int maxlen = 0;
+        int n = answerKey.length();
+        int maxfreq = 0;
+        map<char,int> m1;
         int len = 0;
-        map<int,int> heshmap;
+        int maxlen = 0;
 
         while(r<n)
         {
-            heshmap[answerKey[r]]++;
-            maxfreq = max(maxfreq,heshmap[answerKey[r]]);
+            m1[answerKey[r]]++;
+            maxfreq = max(maxfreq,m1[answerKey[r]]);
             len = r-l+1;
 
-            if((len-maxfreq)>k)
+            while((len-maxfreq)>k)
             {
-                heshmap[answerKey[l]]--;
-
-                if(heshmap[answerKey[l]] == 0)
-                {
-                    heshmap.erase(answerKey[l]);
-                }
+                m1[answerKey[l]]--;
                 l++;
-
                 len = r-l+1;
             }
 
