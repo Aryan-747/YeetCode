@@ -1,53 +1,57 @@
 class Solution {
 public:
 
-    int toof(vector<int> &nums,int k)
+
+    int toofun(vector<int> &nums, int k)
     {
         if(k<0)
         {
             return 0;
         }
 
-        int l=0;
-        int r=0;
-        int n=nums.size();
-        int cnt=0;
-        int maxlen=0;
+        int l =0;
+        int r =0;
+        int n =nums.size();
+        int numberof = 0;
+        int oddcnt = 0;
+        bool oddpresnt = false;
 
         while(r<n)
         {
-            if(nums[r]%2!=0)
+            if(nums[r]%2 !=0)
             {
-                cnt++;
+                oddcnt++;
+                oddpresnt = true;
             }
 
-            while(cnt>k)
+            while(oddcnt>k)
             {
-                if(nums[l]%2!=0)
+                if(nums[l]%2 !=0)
                 {
-                    cnt--;
+                    oddcnt--;
                 }
                 l++;
             }
 
             int len = r-l+1;
-            maxlen+=len;
+            numberof+=len;
             r++;
         }
 
-        return maxlen;
+        if(!oddpresnt)
+        {
+            return 0;
+        }
 
-
+        return numberof;
     }
-
-
 
 
     int numberOfSubarrays(vector<int>& nums, int k) {
 
-        int fein = toof(nums,k) - toof(nums,k-1);
+        int finol = toofun(nums,k) - toofun(nums,k-1);
 
-        return fein;
+        return finol;
         
     }
 };
