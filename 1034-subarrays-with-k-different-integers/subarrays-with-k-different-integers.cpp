@@ -3,14 +3,17 @@ public:
 
     int toofun(vector<int> &nums, int k)
     {
-      
+        if(k<0)
+        {
+            return 0;
+        }
+
+        map<int,int> m1;
+
         int l = 0;
         int r = 0;
         int n = nums.size();
-        int len = 0;
-        int numof = 0;
-        
-        map<int,int> m1;
+        int numberof = 0;
 
         while(r<n)
         {
@@ -27,20 +30,22 @@ public:
                 l++;
             }
 
-            len = r-l+1;
-            numof+=len;
+            int len = r-l+1;
+            numberof+=len;
             r++;
         }
 
-        return numof;
+        return numberof;
+
 
     }
 
+
     int subarraysWithKDistinct(vector<int>& nums, int k) {
 
-        int finoyl = toofun(nums,k) - toofun(nums,k-1);
+        int po = toofun(nums,k) - toofun(nums,k-1);
 
-        return finoyl;
+        return po;
         
     }
 };
