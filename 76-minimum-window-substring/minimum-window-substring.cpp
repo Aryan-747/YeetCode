@@ -2,50 +2,59 @@ class Solution {
 public:
     string minWindow(string s, string t) {
 
-        vector<int> hmap(128, 0);
         int m = s.size();
         int n = t.size();
 
-        for (int i = 0; i < n; i++) {
-            hmap[t[i]]++;
+        vector<int> hashmap(256,0);
+
+        for(int i=0 ; i<n ; i++)
+        {
+            hashmap[t[i]]++;
         }
 
-        int l = 0;
-        int r = 0;
         int minlen = INT_MAX;
         int sind = -1;
+        int l = 0;
+        int r = 0;
         int cnt = 0;
 
-        while (r < m) {
-
-            if (hmap[s[r]] > 0) {
+        while(r<m)
+        {
+            if(hashmap[s[r]]>0)
+            {
                 cnt++;
             }
 
-            hmap[s[r]]--;
+            hashmap[s[r]]--;
 
-            while (cnt == n) {
-
-                    if (r-l+1 < minlen) {
-                        minlen = r - l + 1;
-                        sind = l;
-                    }
-                    hmap[s[l]]++;
-
-                    if (hmap[s[l]]>0) {
-                        cnt = cnt - 1;
-                    }
-
-                    l++;
+            while(cnt == n)
+            {
+                if(r-l+1<minlen)
+                {
+                    sind = l;
+                    minlen = r-l+1;
                 }
 
-                r++;
+                hashmap[s[l]]++;
+
+                if(hashmap[s[l]]>0)
+                {
+                    cnt--;
+                }
+
+                l++;
             }
 
-            if (sind == -1) {
-                return "";
-            }
+            r++;
 
-            return s.substr(sind, minlen);
+        }
+
+        if(minlen == INT_MAX)
+        {
+            return "";
+        }
+
+        return s.substr(sind,minlen);
+        
     }
-        };
+};
