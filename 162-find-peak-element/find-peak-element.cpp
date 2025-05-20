@@ -31,7 +31,7 @@ public:
                 return mid;
             }
 
-            else if(nums[mid]<nums[mid+1])
+            if(nums[mid]<nums[mid+1])
             {
                 low = mid +1;
             }
