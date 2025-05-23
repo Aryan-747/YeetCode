@@ -13,8 +13,9 @@ public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
 
         ListNode* temp = head;
+        ListNode* prev = nullptr;
 
-        int len = 1;
+        int len = 0;
 
         while(temp!=nullptr)
         {
@@ -22,34 +23,35 @@ public:
             len++;
         }
 
-        if(len-n == 1)
+        temp = head;
+
+        if(len-n == 0)
         {
-            ListNode* temp = head;
             head = head->next;
             delete temp;
 
             return head;
         }
 
-        ListNode* temp2 = head;
-        ListNode* prev = nullptr;
+        int cnt = 0;
 
-        int n2 = 1;
-        while(temp2!=nullptr)
+        while(temp!=nullptr)
         {
-
-            if(n2 == (len-n))
+            if(cnt == (len-n))
             {
-                prev->next = temp2->next;
-                delete temp2;
+                prev->next = temp->next;
+                delete temp;
                 return head;
             }
 
-            prev = temp2;
-            temp2 = temp2->next;
-            n2++;
+            prev = temp;
+            temp = temp->next;
+            cnt++;
         }
-        
+
         return head;
+
+        
+        
     }
 };
