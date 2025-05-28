@@ -1,59 +1,61 @@
 class Solution {
 public:
+    
 
-
-    int toofun(vector<int> &nums, int distin)
+    int toofun(vector<int> nums, int k)
     {
-        if(distin<=0)
+        if(k<0)
         {
             return 0;
         }
 
-        map<int,int> m2;
-
         int l = 0;
         int r = 0;
         int n = nums.size();
-        int cnt = 0;
+
+        map<int,int> m1;
+        int numse = 0;
 
         while(r<n)
         {
-            m2[nums[r]]++;
+            m1[nums[r]]++;
 
-            while(m2.size()>distin)
+            while(m1.size()>k)
             {
-                m2[nums[l]]--;
+                m1[nums[l]]--;
 
-                if(m2[nums[l]] == 0)
+                if(m1[nums[l]] == 0)
                 {
-                    m2.erase(nums[l]);
+                    m1.erase(nums[l]);
                 }
                 l++;
             }
 
-            int len = r-l+1;
-            cnt+=len;
+            numse+=r-l+1;
+
             r++;
         }
 
-        return cnt;
+        return numse;
     }
 
 
     int countCompleteSubarrays(vector<int>& nums) {
 
-        map<int,int> m1;
+        int k;
 
-        for(int i=0 ; i<nums.size() ; i++)
+        set<int> s1;
+
+        for(int i=0 ; i<nums.size(); i++)
         {
-            m1[nums[i]]++;
+            s1.insert(nums[i]);
         }
 
-        int distin = m1.size();
+        k = s1.size();
 
-        int finol = toofun(nums,distin) - toofun(nums,distin-1);
+        int ans = toofun(nums,k) - toofun(nums,k-1);
 
-        return finol;
+        return ans;
         
     }
 };
