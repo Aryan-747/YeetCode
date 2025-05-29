@@ -12,44 +12,45 @@ class Solution {
 public:
     vector<int> nextLargerNodes(ListNode* head) {
 
-        vector<int> result;
-        
-        ListNode *len = head;
-        int length = 0;
+        vector<int> ans;
+        vector<int> fs;
 
-        while(len!=nullptr)
+        ListNode *temp = head;
+
+        while(temp!=nullptr)
         {
-            length++;
-            len = len->next;
+            fs.push_back(temp->val);
+            temp = temp->next;
         }
 
-        ListNode* maintemp = head;
+        temp = head;
 
-        while(maintemp!=nullptr)
+        for(int i=0 ; i<fs.size() ; i++)
         {
+            int dat = fs[i];
+            int s = ans.size();
 
-        ListNode* temp = maintemp;
-        ListNode* iterator = maintemp;
-        bool check = false;
-        while(iterator->next!=nullptr)
-        {
-            if(iterator->next->val > temp->val)
+            ListNode* stemp = temp;
+            while(stemp!=nullptr)
             {
-                result.push_back(iterator->next->val);
-                check = true;
-                break;
+                if(stemp->val > dat)
+                {
+                    ans.push_back(stemp->val);
+                    break;
+                }
+
+                stemp = stemp->next;
             }
-            iterator = iterator->next;
+
+            if(ans.size() == s)
+            {
+                ans.push_back(0);
+            }
+
+            temp = temp->next;
         }
 
-        if(!check)
-        {
-            result.push_back(0);
-        }
-        maintemp = maintemp->next;
-        }
-
-        return result;
+        return ans;
         
     }
 };
