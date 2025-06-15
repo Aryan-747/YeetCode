@@ -28,24 +28,17 @@ public:
             int maxno = max(n1,n2);
             int minno = min(n1,n2);
 
-            bool ispres = false;
-
             for(int i=1 ; i<=maxno ; i++)
             {
                 if(n1%i ==0 && n2%i == 0)
                 {
-                    ispres = true;
                     maxi = max(maxi,i);
                 }
             }
-
-            if(ispres)
-            {
             ListNode* nn = new ListNode(maxi);
 
             nn->next = temp->next;
             temp->next = nn;
-            }
 
             temp = temp->next->next;
         }
