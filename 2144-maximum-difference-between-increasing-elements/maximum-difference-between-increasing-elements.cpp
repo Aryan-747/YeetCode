@@ -2,7 +2,7 @@ class Solution {
 public:
     int maximumDifference(vector<int>& nums) {
 
-        // optimal O(n) two pointer approach
+        // optimal O(n) min max logic
 
         int diff = -1;
         int min = nums[0];
