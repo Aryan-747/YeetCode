@@ -2,23 +2,32 @@ class Solution {
 public:
     int maximumDifference(vector<int>& nums) {
 
-        int maxd = INT_MIN;
+        // optimal O(n) two pointer approach
 
-        for(int i=0 ; i<nums.size()-1; i++)
+        int diff = -1;
+        int min = nums[0];
+
+        int l = 1;
+
+        while(l<nums.size())
         {
-            for(int j=i+1; j<nums.size(); j++)
+            if(min<nums[l])
             {
-                maxd = max(maxd,nums[j]-nums[i]);
+                diff = max(diff,(nums[l]-min));
             }
+
+            else
+            {
+                min = nums[l];
+            }
+            l++;
         }
 
-        if(maxd <=0)
+        if(diff == -1)
         {
             return -1;
         }
 
-        return maxd;
-
-        
+        return diff;        
     }
 };
