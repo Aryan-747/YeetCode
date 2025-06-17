@@ -2,32 +2,26 @@ class Solution {
 public:
     int maximumDifference(vector<int>& nums) {
 
-        // optimal O(n) min max logic
-
-        int diff = -1;
         int min = nums[0];
 
-        int l = 1;
+        int maxd = -1;
 
-        while(l<nums.size())
+
+        for(int i=1 ; i<nums.size(); i++)
         {
-            if(min<nums[l])
+            if(nums[i]>min)
             {
-                diff = max(diff,(nums[l]-min));
+                maxd = max(maxd,nums[i]-min);
             }
 
             else
             {
-                min = nums[l];
+                min = nums[i];
             }
-            l++;
         }
 
-        if(diff == -1)
-        {
-            return -1;
-        }
 
-        return diff;        
+        return maxd;
+        
     }
 };
