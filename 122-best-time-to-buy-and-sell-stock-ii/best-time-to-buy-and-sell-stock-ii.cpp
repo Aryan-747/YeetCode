@@ -2,20 +2,19 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
 
-        int maxprof = 0;
-        int dihh = prices[0];
-        
+        int totalprofit = 0;
+
         for(int i=1 ; i<prices.size(); i++)
         {
-            if(prices[i]>dihh)
+            if(prices[i]>prices[i-1])
             {
-                maxprof += prices[i]-dihh;
+                // whenever increasing slope, book profit and add to totalprofit
+                totalprofit += prices[i]-prices[i-1];
             }
 
-            dihh = prices[i];
         }
 
-        return maxprof;
+        return totalprofit;
         
     }
 };
