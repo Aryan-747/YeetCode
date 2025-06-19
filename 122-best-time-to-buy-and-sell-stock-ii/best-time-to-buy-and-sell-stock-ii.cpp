@@ -1,20 +1,21 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-
-        int totalprofit = 0;
+        
+        // multiple transactions allowed
+        int totalprof = 0;
+        int min = 0;
 
         for(int i=1 ; i<prices.size(); i++)
         {
+            // book profit since on increasing curve
             if(prices[i]>prices[i-1])
             {
-                // whenever increasing slope, book profit and add to totalprofit
-                totalprofit += prices[i]-prices[i-1];
+                totalprof+=prices[i]-prices[i-1];
             }
-
         }
 
-        return totalprofit;
+        return totalprof;
         
     }
 };
