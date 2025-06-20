@@ -10,14 +10,13 @@ class Solution {
 public:
     bool hasCycle(ListNode *head) {
 
-        // using tortoise and hare algorithm (fast and slow pointers)
+        // using tortoise and hare method (fast and slow pointers)
 
-        ListNode* slow = head;
         ListNode* fast = head;
+        ListNode* slow = head;
 
-        while(fast!=nullptr && fast->next != nullptr)
+        while(fast!=nullptr && fast->next!= nullptr)
         {
-
             slow = slow->next;
             fast = fast->next->next;
 
@@ -27,8 +26,9 @@ public:
             }
         }
 
-
         return false;
+
+
         
     }
 };
