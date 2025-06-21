@@ -10,21 +10,41 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
 
-        // using hashing
+        // using tortoise and hare, most optimal solution
 
-        ListNode* temp = head;
-        map<ListNode*, int> m1;
+        ListNode* slow = head;
+        ListNode* fast = head;
 
-        while(temp!=nullptr)
+        while(fast != nullptr && fast->next != nullptr)
         {
-            if(m1.find(temp)!=m1.end())
+            slow = slow->next;
+            fast = fast->next->next;
+        
+            if(slow == fast)
             {
-                return temp;
+                break;
+            }
+        }
+        // reset slow to head;
+        slow = head;
+
+        // move each by one now
+
+        while(fast!=nullptr && fast->next !=nullptr)
+        {
+            if(slow == fast)
+            {
+                // node where loop starts
+                return slow;
             }
 
-            m1[temp]++;
-            temp = temp->next;
+            slow = slow->next;
+            fast = fast->next;
+
+
         }
+
+
 
         return nullptr;
         
