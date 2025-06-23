@@ -10,32 +10,63 @@
  */
 class Solution {
 public:
-    bool isPalindrome(ListNode* head) {
 
-        // using stack (O(2n) Time, O(n) Space)
+    ListNode *reversell(ListNode* secondhead)
+    {
+        ListNode* temp = secondhead;
+        ListNode* prev = nullptr;
+        ListNode* next = nullptr;
 
-        stack<int> st1;
-
-        ListNode* temp = head;
 
         while(temp!=nullptr)
         {
-            st1.push(temp->val);
-            temp = temp->next;
+            next = temp->next;
+
+            temp->next = prev;
+
+            prev = temp;
+            temp = next;   
         }
 
-        temp = head;
+        return prev;
 
-        while(temp!=nullptr && st1.empty() == false)
+    }
+
+
+    bool isPalindrome(ListNode* head) {
+
+        if(head->next == nullptr)
         {
-            if(st1.top() != temp->val)
+            return true;
+        }
+
+        // finding middle
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while(fast->next!=nullptr && fast->next->next !=nullptr)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        ListNode* secondhead = slow->next;
+        secondhead = reversell(secondhead);
+        ListNode* firsthead = head;
+
+        while(secondhead != nullptr)
+        {
+            if(firsthead->val != secondhead->val)
             {
+                reversell(secondhead); // undoing reversal
                 return false;
             }
-            st1.pop();
-            temp = temp->next;
+            firsthead = firsthead->next;
+            secondhead = secondhead->next;
         }
 
+        reversell(secondhead); // undoing reversal;
         return true;
         
     }
