@@ -1,18 +1,18 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        
-        // multiple transactions allowed
+
         int totalprof = 0;
-        int min = 0;
+        int min = prices[0];
 
         for(int i=1 ; i<prices.size(); i++)
         {
-            // book profit since on increasing curve
-            if(prices[i]>prices[i-1])
+            if(prices[i]>min) // book profit
             {
-                totalprof+=prices[i]-prices[i-1];
+                totalprof += prices[i]-min;
             }
+
+            min = prices[i];
         }
 
         return totalprof;
