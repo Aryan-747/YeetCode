@@ -34,7 +34,7 @@ public:
             {
                 return slow;
             }
-
+            // in some cases slow and fast might detect loop at starting point itself, so first check then move to next node
             slow = slow->next;
             fast = fast->next;
         }
