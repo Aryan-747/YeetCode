@@ -12,10 +12,11 @@ public:
             if(nums[i]>first)
             {
                 maxd = max(maxd,nums[i]-first);
-                continue;
             }
-
-            first = nums[i];
+            else
+            {
+            first = nums[i]; // update min
+            }
         }
 
         return maxd;
