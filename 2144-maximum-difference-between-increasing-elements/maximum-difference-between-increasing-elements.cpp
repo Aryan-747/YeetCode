@@ -11,14 +11,11 @@ public:
         {
             if(nums[i]>first)
             {
-                int diff = nums[i]-first;
-                maxd = max(maxd,diff);
-            }
-            else
-            {
-                first = nums[i];
+                maxd = max(maxd,nums[i]-first);
+                continue;
             }
 
+            first = nums[i];
         }
 
         return maxd;
