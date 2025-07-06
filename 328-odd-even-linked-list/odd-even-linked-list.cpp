@@ -12,57 +12,31 @@ class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
 
-        // brute force data replacement
+        // doing without using auxilary space
 
         if(head == nullptr || head->next == nullptr)
         {
             return head;
         }
 
-        vector<int> data(10000,0);
+        ListNode* odd = head;
+        ListNode* evenhead = head->next;
+        ListNode* even = head->next;
 
-        ListNode* temp = head;
-        ListNode* temp2 = head->next;
-        int i = 0;
 
-        while(temp!=nullptr && temp->next!=nullptr)
+        while(even != nullptr && even->next != nullptr)
         {
-            data[i] = temp->val;
-            temp = temp->next->next;
-            i++;
+            odd->next = odd->next->next; // moving node to node (even to even and odd to odd)
+            even->next = even->next->next;
+
+            odd = odd->next;
+            even = even->next;
         }
 
-        // in case last node is leftout
-        if(temp)
-        {
-            data[i] = temp->val;
-            i++;
-        }
+        odd->next = evenhead; // pointing last odd node to first even node
 
-        while(temp2!=nullptr && temp2->next != nullptr)
-        {
-            data[i] = temp2->val;
-            temp2 = temp2->next->next;
-            i++;
-        }
-
-        //in case last node is leftout
-        if(temp2)
-        {
-            data[i] = temp2->val;
-            i++;
-        }
-
-        ListNode *temp3 = head;
-        i = 0;
-        while(temp3!=nullptr)
-        {
-            temp3->val = data[i];
-            i++;
-            temp3 = temp3->next;
-        }
-        
         return head;
+
         
     }
 };
