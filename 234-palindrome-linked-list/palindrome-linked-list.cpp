@@ -10,34 +10,67 @@
  */
 class Solution {
 public:
+
+    ListNode* reversal(ListNode* head)
+    {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+
+        while(curr!=nullptr)
+        {
+            ListNode* temp = curr->next;
+            curr->next = prev;
+            prev = curr;
+
+            curr = temp;            
+        }
+
+        return prev; // since curr points at nullptr
+    }
+
     bool isPalindrome(ListNode* head) {
 
-        // using steck
 
-        stack<int> s1;
+        if(head->next == nullptr) // single node (will always be a palindrome)
+        {
+            return true;
+        }
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        // finding middle
+        while(fast != nullptr && fast->next != nullptr)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        
+        // reversing second half
+
+        slow = reversal(slow);
+
+        // checking palindrome
 
         ListNode* temp = head;
 
-        while(temp!=nullptr)
+        while(slow!=nullptr)
         {
-            s1.push(temp->val);
-            temp = temp->next;
-        }
-
-        temp = head;
-
-        while(!s1.empty())
-        {
-            if(s1.top()!=temp->val)
+            
+            if(temp->val != slow->val)
             {
+                slow = reversal(slow); // undoing reversal
                 return false;
             }
 
             temp = temp->next;
-            s1.pop();
+            slow = slow->next;
         }
 
+
+        slow = reversal(slow); // undoing reversal
         return true;
-        
+
     }
 };
