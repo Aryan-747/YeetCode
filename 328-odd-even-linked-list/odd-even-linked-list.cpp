@@ -10,33 +10,33 @@
  */
 class Solution {
 public:
+
     ListNode* oddEvenList(ListNode* head) {
 
-        // doing without using auxilary space
 
         if(head == nullptr || head->next == nullptr)
         {
             return head;
         }
 
-        ListNode* odd = head;
-        ListNode* evenhead = head->next;
-        ListNode* even = head->next;
-
-
-        while(even != nullptr && even->next != nullptr)
+        ListNode* odd = head; // first odd node
+        ListNode* even = head->next; // first even node
+        ListNode* feven = even;
+        
+        while(even!=nullptr && even->next != nullptr)
         {
-            odd->next = odd->next->next; // moving node to node (even to even and odd to odd)
+            odd->next = odd->next->next;
             even->next = even->next->next;
 
             odd = odd->next;
             even = even->next;
         }
 
-        odd->next = evenhead; // pointing last odd node to first even node
+        // pointing last odd to first even
+        odd->next = feven;
 
         return head;
 
-        
+
     }
 };
