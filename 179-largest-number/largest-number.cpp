@@ -3,7 +3,7 @@ public:
 
 
     // custom comparator
-
+    // need to declare as static since using inside class, if declared globally no need to declare it as static
     static bool myCompare(string s1, string s2)
     {
         if((s1+s2)>(s2+s1))
@@ -13,9 +13,7 @@ public:
 
         return 0;
     }
-
-
-
+    
     string largestNumber(vector<int>& nums) {
 
         vector<string> ans;
