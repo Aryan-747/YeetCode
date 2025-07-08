@@ -3,29 +3,30 @@ public:
     int characterReplacement(string s, int k) {
 
         int l = 0;
+        int maxfreq = 0;
         int r = 0;
         int n = s.length();
-        int maxfreq = 0;
-        int len = 0;
 
-        map<int,int> Fmap;
+        unordered_map<char,int> m1; // better time complexity while using unordered
+        int maxlen = 0;
 
-        int maxlen = INT_MIN;
 
         while(r<n)
         {
-            Fmap[s[r]]++;
-            len = r-l+1;
-            maxfreq = max(maxfreq,Fmap[s[r]]);
-            if(len-maxfreq>k)
-            {
-                Fmap[s[l]]--;
+            m1[s[r]]++;
+            maxfreq = max(maxfreq,m1[s[r]]);
+            int len = r-l+1;
 
-                if(Fmap[s[l]] == 0) // not necessary
+            if((len-maxfreq)>k)
+            {
+                m1[s[l]]--; // removing element from start
+
+                if(m1[s[l]] == 0)
                 {
-                    Fmap.erase(s[l]);
-                } 
-                l++;
+                    m1.erase(s[l]);
+                }
+
+                l++; // moving window;
             }
 
             len = r-l+1;
@@ -33,12 +34,8 @@ public:
             r++;
         }
 
-        if(maxlen == INT_MIN)
-        {
-            return -1;
-        }
-        
         return maxlen;
         
+
     }
 };
