@@ -2,29 +2,28 @@ class Solution {
 public:
     int maxProfit(vector<int>& prices) {
 
-        // using min max
-
-        int maxprofit = 0;
-        int profit = prices[0];
-
+        int mini = prices[0];
+        int maxprof = INT_MIN;
 
         for(int i=1 ; i<prices.size(); i++)
         {
-            if(profit<prices[i])
+            if(prices[i]<mini)
             {
-                // keep checking for maximum profit
-                maxprofit = max(maxprofit,prices[i]-profit);
+                mini = prices[i];
             }
 
-            else
-            {
-                // new minimum is found so update the minimum
-                profit = prices[i];
-            }
+            // book profit
+            int profit = prices[i]-mini;
+            maxprof = max(maxprof,profit);
+
         }
 
-        return maxprofit;
+        if(maxprof == INT_MIN)
+        {
+            return 0;
+        }
 
+        return maxprof;
         
     }
 };
