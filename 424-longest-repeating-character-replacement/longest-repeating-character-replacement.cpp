@@ -17,7 +17,7 @@ public:
             maxfreq = max(maxfreq,m1[s[r]]);
             int len = r-l+1;
 
-            while((len-maxfreq)>k)
+            if((len-maxfreq)>k)
             {
                 m1[s[l]]--; // removing element from start
 
@@ -27,7 +27,6 @@ public:
                 }
 
                 l++; // moving window;
-                len = r-l+1;
             }
 
             len = r-l+1;
