@@ -46,10 +46,12 @@ public:
             temp->next = traverser2;
         }
 
-        ListNode* head = dummi->next; //
-        delete dummi; // deleting dummy pointer
-        
-        return head;
+        ListNode *deletehead = dummi;
+        dummi = dummi->next;
+
+        delete deletehead; // freeing the dummy pointer created.
+
+        return dummi;
         
     }
 };
