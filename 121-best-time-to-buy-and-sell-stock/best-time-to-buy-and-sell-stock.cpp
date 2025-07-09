@@ -13,8 +13,11 @@ public:
             }
 
             // book profit
+            else
+            {
             int profit = prices[i]-mini;
             maxprof = max(maxprof,profit);
+            }
 
         }
 
