@@ -1,43 +1,43 @@
+
+bool customcomp(string s1, string s2)
+{
+    return (s1+s2)>(s2+s1);
+}
+
+
+
 class Solution {
 public:
-
-
-    // custom comparator
-    // need to declare as static since using inside class, if declared globally no need to declare it as static
-    static bool myCompare(string s1, string s2)
-    {
-        if((s1+s2)>(s2+s1))
-        {
-            return 1;
-        }
-
-        return 0;
-    }
-    
     string largestNumber(vector<int>& nums) {
 
-        vector<string> ans;
+        vector<string> numbers;
 
         for(int x: nums)
         {
-            ans.push_back(to_string(x));
+            numbers.push_back(to_string(x));
         }
 
-        sort(ans.begin(), ans.end(), myCompare); // sorting using custom comparator
-        
-        // edge case
-        if(ans[0] == "0")
+        // sorting using custom comparator which is declared globally
+
+        sort(numbers.begin(),numbers.end(),customcomp);
+
+        // edge case if largest number is '0';
+
+        if(numbers[0] == "0")
         {
             return "0";
         }
 
-        string result = "";
+        string ans;
 
-        for(string x: ans)
+        // storing ans from sorted string array in string variable ans
+
+        for(string x: numbers)
         {
-            result+=x;
+            ans+=x;
         }
 
-        return result;
+        return ans;
+        
     }
 };
