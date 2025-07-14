@@ -12,46 +12,47 @@ class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
 
-        ListNode* dummi = new ListNode(-1); // creating dummy pointer
-        ListNode* temp = dummi; // to traverse dummy
 
-        ListNode *traverser1 = list1;
-        ListNode *traverser2 = list2;
+        ListNode* dummy = new ListNode(-1);
+        ListNode* mover = dummy;
+        ListNode* t1 = list1;
+        ListNode* t2 = list2;
+        // condition
 
-
-        while(traverser1!=nullptr && traverser2!=nullptr)
+        while(t1!=nullptr && t2!=nullptr)
         {
-            if(traverser1->val < traverser2->val) // if value in list one is small dummy points to list 1 element                                  
+            if(t1->val < t2->val)
             {
-                temp->next = traverser1;
-                temp = temp->next;
-                traverser1 = traverser1->next;
+                mover->next = t1;
+                t1 = t1->next;
+                mover = mover->next;
             }
 
-            else // dummy points to list 2 element
+            else
             {
-                temp->next = traverser2;
-                temp = temp->next;
-                traverser2 = traverser2->next;
+                mover->next = t2;
+                t2 = t2->next;
+                mover = mover->next;
             }
         }
 
-        if(traverser1) // if traverser2 reaches null but traverser1 is still left
+        // if t1 is still left
+        if(t1)
         {
-            temp->next = traverser1;
+            mover->next = t1;
         }
 
-        else // vice versa
+        else
         {
-            temp->next = traverser2;
+            mover->next = t2;
         }
 
-        ListNode *deletehead = dummi;
-        dummi = dummi->next;
+        // new head = dummy->next;
 
-        delete deletehead; // freeing the dummy pointer created.
-
-        return dummi;
+        ListNode* deleteme = dummy;
+        dummy = dummy->next;
+        delete deleteme; // freeing memory
+        return dummy;
         
     }
 };
