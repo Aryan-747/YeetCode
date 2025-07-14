@@ -10,20 +10,19 @@
  */
 class Solution {
 public:
-
     ListNode* oddEvenList(ListNode* head) {
 
 
-        if(head == nullptr || head->next == nullptr)
+        if(head == nullptr || head->next == nullptr || head->next->next == nullptr) // edge cases
         {
             return head;
         }
 
-        ListNode* odd = head; // first odd node
+        ListNode* odd = head;
         ListNode* even = head->next; // first even node
-        ListNode* feven = even;
-        
-        while(even!=nullptr && even->next != nullptr)
+        ListNode* feven = even;// storing first even node
+
+        while(even!=nullptr && even->next !=nullptr)
         {
             odd->next = odd->next->next;
             even->next = even->next->next;
@@ -32,11 +31,11 @@ public:
             even = even->next;
         }
 
-        // pointing last odd to first even
+        // pointing last odd node to first even node;
         odd->next = feven;
 
         return head;
 
-
+        
     }
 };
