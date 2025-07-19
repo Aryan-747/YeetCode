@@ -87,8 +87,7 @@ public:
         righthead = sortList(righthead);
 
         // merging lists
-        head = merge(lefthead,righthead);  
+        return merge(lefthead,righthead);  
 
-        return head;  
     }
 };
