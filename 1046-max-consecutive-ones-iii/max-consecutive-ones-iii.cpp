@@ -16,7 +16,7 @@ public:
             }
             
             // condition is no longer valid
-            if(zeroes>k)
+            while(zeroes>k)
             {
                 if(nums[l] == 0)
                 {
