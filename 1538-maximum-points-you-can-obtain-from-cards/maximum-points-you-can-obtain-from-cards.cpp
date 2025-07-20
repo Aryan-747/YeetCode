@@ -3,30 +3,28 @@ public:
     int maxScore(vector<int>& cardPoints, int k) {
 
         int sum = 0;
-        int r=0;
-        int l=cardPoints.size()-1;
-        int n=cardPoints.size();
         int maxsum = 0;
 
-        //frontsum;
-        
-        while(r<k)
+        // calculating frontsum
+        for(int i=0 ; i<k ; i++)
         {
-            sum+=cardPoints[r];
-            maxsum = max(maxsum,sum);
-            r++;
+            sum+=cardPoints[i];
         }
-        r = r-1;
-        while(r>=0)
-        {
-            sum-=cardPoints[r];
-            sum+=cardPoints[l];
-            r--;
-            l--;
-            maxsum = max(maxsum,sum);
-        }
+        maxsum = max(maxsum,sum);
 
+        // removing one from front and adding one from back
+
+        int bind = cardPoints.size()-1;
+        for(int i=k-1 ; i>=0 ; i--)
+        {
+            sum-=cardPoints[i];
+            sum+=cardPoints[bind];
+            maxsum = max(maxsum,sum);
+            bind--;
+        }
 
         return maxsum;
+
+
     }
 };
