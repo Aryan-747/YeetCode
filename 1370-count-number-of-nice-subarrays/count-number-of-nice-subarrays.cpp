@@ -2,31 +2,30 @@ class Solution {
 public:
 
 
-    int toofun(vector<int> &nums, int k)
+    int findans(vector<int> &nums, int k)
     {
+        // base case
         if(k<0)
         {
             return 0;
         }
 
-        int l =0;
-        int r =0;
-        int n =nums.size();
-        int numberof = 0;
+        int l = 0;
+        int r = 0;
+        int n = nums.size();
+        int totnum = 0;
         int oddcnt = 0;
-        bool oddpresnt = false;
 
         while(r<n)
         {
-            if(nums[r]%2 !=0)
+            if(nums[r]%2!=0)
             {
                 oddcnt++;
-                oddpresnt = true;
             }
 
             while(oddcnt>k)
             {
-                if(nums[l]%2 !=0)
+                if(nums[l]%2!=0)
                 {
                     oddcnt--;
                 }
@@ -34,24 +33,21 @@ public:
             }
 
             int len = r-l+1;
-            numberof+=len;
+            totnum+=len;
             r++;
         }
 
-        if(!oddpresnt)
-        {
-            return 0;
-        }
+        return totnum;
 
-        return numberof;
     }
+
 
 
     int numberOfSubarrays(vector<int>& nums, int k) {
 
-        int finol = toofun(nums,k) - toofun(nums,k-1);
+        int answer = findans(nums,k) - findans(nums,k-1);
 
-        return finol;
+        return answer;
         
     }
 };
