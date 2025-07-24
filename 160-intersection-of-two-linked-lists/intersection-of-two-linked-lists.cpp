@@ -10,33 +10,36 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
 
-        unordered_map<ListNode*,int> m1; // better complexity than regular map;
-
-        // traversing first list and storing all nodes
+        if(headA == nullptr || headB == nullptr)
+        {
+            return nullptr;
+        }
 
         ListNode* t1 = headA;
-
-        while(t1!=nullptr)
-        {
-            m1[t1]++;
-            t1 = t1->next;
-        }
-
-        // traversing second list and checking whether there is any common node
-
         ListNode* t2 = headB;
 
-        while(t2!=nullptr)
+        while(t1!=t2)
         {
-            if(m1.find(t2)!=m1.end()) // it is present
-            {
-                return t2;
-            }
-            
+            t1 = t1->next;
             t2 = t2->next;
-        }
-        
 
-        return nullptr;
+            if(t1 == t2)
+            {
+                return t1; // first intersection point
+            }
+
+            if(t1 == nullptr)
+            {
+                t1 = headB; // move to secondhead
+            }
+
+            if(t2 == nullptr)
+            {
+                t2 = headA; // move to firsthead
+            }
+        }
+
+        return t1; // first node is the first intersection point
+        
     }
 };
