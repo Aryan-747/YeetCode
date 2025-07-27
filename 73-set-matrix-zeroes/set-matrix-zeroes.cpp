@@ -1,65 +1,39 @@
 class Solution {
 public:
-
-
-    void markrow(int i,int col,vector<vector<int>> &matrix)
-    {
-        for(int j=0 ; j<col ; j++)
-        {
-            if(matrix[i][j]!=0)
-            {
-                matrix[i][j] = INT_MIN+5;
-            }
-        }
-
-    }
-
-    void markcol(int j, int row,vector<vector<int>> &matrix)
-    {
-
-        for(int i=0 ; i<row ; i++)
-        {
-            if(matrix[i][j] != 0)
-            {
-                matrix[i][j] = INT_MIN+5;
-            }
-        }
-    }
-
-
     void setZeroes(vector<vector<int>>& matrix) {
 
-            int row = matrix.size();
-            int col = matrix[0].size();
-            bool flag = false;
+        int n = matrix.size(); // number of rows
+        int m = matrix[0].size(); // number of columns     
 
-            for(int i=0 ; i<row ; i++)
+
+        vector<bool> rowcheck(n,false); // track of rows
+        vector<bool> colcheck(m,false);  // track of columns
+
+
+        for(int i=0 ; i<n ; i++)
+        {
+            for(int j=0 ; j<m ; j++)
             {
-                for(int j=0 ; j<col ; j++)
+                if(matrix[i][j] == 0)
                 {
-                    if(matrix[i][j] == 0)
-                    {
-                        flag = true;
-                        markrow(i,col,matrix);
-                        markcol(j,row,matrix);
-                    }
+                    rowcheck[i] = true;
+                    colcheck[j] = true;
                 }
             }
+        }
 
-            if(flag)
+        // setting zeroes
+
+        for(int i=0 ; i<n ; i++)
+        {
+            for(int j=0 ; j<m ; j++)
             {
-            // traversing matrix again and changing -1's to zeroes
-                for(int i=0 ; i<row ; i++)
+                if((rowcheck[i]) || (colcheck[j]))
                 {
-                    for(int j=0 ; j<col ; j++)
-                    {
-                        if(matrix[i][j] == INT_MIN+5)
-                        {
-                        matrix[i][j] = 0;
-                        }
-                    }
+                    matrix[i][j] = 0;
                 }
             }
+        }
 
     }
 };
