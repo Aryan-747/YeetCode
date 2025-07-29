@@ -30,7 +30,7 @@ public:
 
         prev = nullptr; // resetting prev
 
-        while(curr!=nullptr && i<=right) // reversing
+        while(curr!=nullptr && i!=right+1) // reversing
         {
             ListNode* next = curr->next;
             curr->next = prev;
