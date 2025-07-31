@@ -12,45 +12,58 @@ class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
 
-        int i = 1;
-        ListNode* prev = nullptr;
-        ListNode* curr = head;
-
-        // moving towards the start point
-        while(curr!=nullptr && i!=left)
+        // edge cases
+        if(head == nullptr || head->next == nullptr || left == right)
         {
+            return head;
+        }
+
+        // finding the start point
+        int cnt = 1;
+        ListNode* curr = head;
+        ListNode* prev = nullptr;
+
+        while(cnt!=left)
+        {   
             prev = curr;
             curr = curr->next;
-            i++;
+            cnt++;
         }
 
         // storing important nodes
-        ListNode* pts = prev; // pointer to start
-        ListNode* start = curr; // node from where reversal starts
+        ListNode* pts = prev;
+        ListNode* start = curr;
 
-        prev = nullptr; // resetting prev
+        // resetting prev;
+        prev = nullptr;
 
-        while(curr!=nullptr && i!=right+1) // reversing
+
+        // reversing sublist
+        while(curr!=nullptr && cnt<right+1)
         {
             ListNode* next = curr->next;
             curr->next = prev;
 
             prev = curr;
             curr = next;
-            i++;
+            cnt++;
         }
 
-        start->next = curr; // connecting the linked list to correct node
+        // connecting sublist correctly to the main list
 
-        if(pts!=nullptr)
+
+        // sublist started from 1st node
+        if(pts == nullptr)
         {
-            pts->next = prev; // pointer to start starts pointing the correct node
+            start->next = curr;
+            return prev; //  prev is new head
         }
-        else
-        {
-            return prev; // this means left was equal to 1, hence prev becomes new head
-        }
+
+        pts->next = prev;
+        start->next = curr;
 
         return head;
+
+        
     }
 };
