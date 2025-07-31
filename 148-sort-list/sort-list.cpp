@@ -13,81 +13,74 @@ public:
 
     ListNode* findmiddle(ListNode* head)
     {
+        // modifying it a bit to return 1st middle in case of even number of nodes
         ListNode* slow = head;
-        ListNode* fast = head->next; // slight change so that first middle is returned in case of even number of nodes
+        ListNode* fast = head->next;
 
-        while(fast!=nullptr && fast->next != nullptr)
+        while(fast!=nullptr && fast->next!=nullptr)
         {
             slow = slow->next;
             fast = fast->next->next;
         }
 
-        return slow; // middle
+        return slow; // first middle
     }
 
-    ListNode* merge(ListNode* list1, ListNode* list2)
+    ListNode* merge(ListNode* l1, ListNode* l2)
     {
-        ListNode* dummy = new ListNode(-1);
-        ListNode* t1 = list1;
-        ListNode* t2 = list2;
-        ListNode* mover = dummy;
+        ListNode* dummy = new ListNode(-1,nullptr);
+        ListNode* temp = dummy;
 
-        while(t1!=nullptr && t2!=nullptr)
+        ListNode* t1 = l1;
+        ListNode* t2 = l2;
+
+        while(t1 && t2)
         {
             if(t1->val<t2->val)
             {
-                mover->next = t1;
+                temp->next = t1;
                 t1 = t1->next;
-                mover = mover->next;
             }
 
             else
             {
-                mover->next = t2;
+                temp->next = t2;
                 t2 = t2->next;
-                mover = mover->next;
             }
+
+            temp = temp->next;
         }
 
         if(t1) // t1 is still left
         {
-            mover->next = t1;
+            temp->next = t1;
         }
         else
         {
-            mover->next = t2;
+            temp->next = t2;
         }
 
-        return dummy->next; // new head;
-    
+        return dummy->next; // new head
     }
-
 
 
 
     ListNode* sortList(ListNode* head) {
 
-        ListNode* lefthead = head;
-
         // base case
-
         if(head == nullptr || head->next == nullptr)
         {
             return head;
         }
 
-        // sorting using mergesort
-        ListNode* middle = findmiddle(head);
-        ListNode* righthead = middle->next; // other head;
-        middle->next = nullptr; // removing connection
+        ListNode* lefthead = head;
+        ListNode* middle = findmiddle(lefthead);
+        ListNode* righthead = middle->next;
+        middle->next = nullptr; // disconnecting the two divided lists
 
-        // applying mergesort on the broken down parts recursively
+        lefthead = sortList(lefthead); // sorting left half
+        righthead = sortList(righthead); // sorting right half
 
-        lefthead = sortList(lefthead);
-        righthead = sortList(righthead);
-
-        // merging lists
-        return merge(lefthead,righthead);  
-
+        return merge(lefthead,righthead);
     }
 };
