@@ -17,7 +17,7 @@ public:
         ListNode* dummy = new ListNode(-1,head);
         ListNode* temp = dummy;
 
-        while(temp->next!=nullptr && temp!=nullptr)
+        while(temp->next!=nullptr)
         {
             if(temp->next->val == val)
             {
