@@ -3,16 +3,15 @@ public:
     int maxProfit(vector<int>& prices) {
 
         int totalprof = 0;
-        int min = prices[0];
 
         for(int i=1 ; i<prices.size(); i++)
         {
-            if(prices[i]>min) // book profit
+            // book profit, since increasing curve
+            if(prices[i]>prices[i-1])
             {
-                totalprof += prices[i]-min;
+                totalprof+= prices[i]-prices[i-1];
             }
 
-            min = prices[i];
         }
 
         return totalprof;
