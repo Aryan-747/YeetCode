@@ -13,7 +13,7 @@ public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 
         ListNode* dummy = new ListNode(-1);
-        ListNode* mover = dummy;
+        ListNode* temp = dummy;
 
         ListNode* t1 = l1;
         ListNode* t2 = l2;
@@ -36,17 +36,17 @@ public:
                 t2 = t2->next;
             }
 
-            ListNode* newnode = new ListNode(sum%10);
-            mover->next = newnode;
+            ListNode* nn = new ListNode(sum%10);
             carry = sum/10;
-            mover = mover->next;
-       
+            temp->next = nn;
+            temp = temp->next;
         }
 
         if(carry>0)
         {
-            ListNode* newnode = new ListNode(carry);
-            mover->next =  newnode;
+            // carry is still left;
+            ListNode* nn = new ListNode(carry);
+            temp->next = nn;
         }
 
         return dummy->next; // new head;
