@@ -26,9 +26,11 @@ public:
                 prev->next = mover->next;
                 mover = prev;
             }
-            
+            else
+            {
             prev = mover;
             mover = mover->next;
+            }
             
         }
         
