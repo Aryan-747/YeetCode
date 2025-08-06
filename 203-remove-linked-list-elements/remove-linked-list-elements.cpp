@@ -12,26 +12,26 @@ class Solution {
 public:
     ListNode* removeElements(ListNode* head, int val) {
 
-        // using dummy node
+        // using dummy node;
 
-        ListNode* dummy = new ListNode(-1,head);
-        ListNode* temp = dummy;
+        ListNode* dummi = new ListNode(-1,head);
+        ListNode* mover = dummi; // traversing dummi
 
-        while(temp->next!=nullptr)
+        ListNode* prev = nullptr;
+
+        while(mover!=nullptr)
         {
-            if(temp->next->val == val)
+            if(mover->val == val)
             {
-                ListNode* deleteme = temp->next;
-                temp->next = temp->next->next;
-                delete deleteme;
+                prev->next = mover->next;
+                mover = prev;
             }
-            else
-            {
-            temp = temp->next;
-            }
+            
+            prev = mover;
+            mover = mover->next;
+            
         }
-
-        return dummy->next;
         
+        return dummi->next;
     }
 };
