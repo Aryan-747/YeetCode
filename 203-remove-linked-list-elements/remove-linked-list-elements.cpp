@@ -24,7 +24,7 @@ public:
             if(mover->val == val)
             {
                 prev->next = mover->next;
-                mover = prev;
+                mover = mover->next;
             }
             else
             {
