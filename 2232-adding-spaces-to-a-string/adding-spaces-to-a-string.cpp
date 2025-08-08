@@ -5,16 +5,11 @@ public:
         
         string newstring ="";
         int index = 0; // used to traverse the spaces array
-
-     
-
         int f = s.length();
 
 
         for(int i=0 ; i<f; i++)
         {
-    
-
             if(index>=spaces.size())
             {
 
