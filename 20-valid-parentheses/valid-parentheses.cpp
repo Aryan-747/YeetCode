@@ -25,17 +25,11 @@ public:
                 char bs = s1.top();
                 s1.pop();
 
-                if(s[i] == ')' && bs != '(')
+                if((s[i] == ')' && bs == '(') || (s[i] == '}' && bs == '{') || (s[i] == ']' && bs == '['))
                 {
-                    return false;
+                    // keep iterating as condition is true
                 }
-
-                else if(s[i] == '}' && bs != '{')
-                {
-                    return false;
-                }
-
-                else if(s[i] == ']' && bs != '[')
+                else
                 {
                     return false;
                 }
