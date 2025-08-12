@@ -6,35 +6,31 @@ public:
 
         for(int i=0 ; i<s.length(); i++)
         {
-            // preserve openings
+            // pushing all openings in stack
             if(s[i] == '(' || s[i] == '{' || s[i] == '[')
             {
                 s1.push(s[i]);
             }
 
-            // it is a closing
+
             else
             {
 
-                // s1 is empty, i.e no opening hence return false
-                if(s1.empty())
+                if(s1.empty()) // no opening exists
                 {
                     return false;
                 }
 
-                char bs = s1.top();
+                char ls = s1.top();
                 s1.pop();
 
-                if((s[i] == ')' && bs == '(') || (s[i] == '}' && bs == '{') || (s[i] == ']' && bs == '['))
-                {
-                    // keep iterating as condition is true
-                }
-                else
+
+                if((s[i] == ')' &&  ls!='(') || (s[i] == '}' && ls != '{') || (s[i] == ']' && ls != '['))
                 {
                     return false;
                 }
-
             }
+
         }
 
         return s1.empty();
