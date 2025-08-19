@@ -19,7 +19,7 @@ public:
                 totsum += r-l+1;
             }
 
-            while(cursum>0 || cursum<0)
+            while(cursum>0 || cursum<0) // keep in mind negative values as well
             {
                 cursum-=nums[l];
                 l++;
