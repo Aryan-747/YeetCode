@@ -1,46 +1,34 @@
 class Solution {
 public:
-
     bool isAnagram(string s, string t) {
 
-    bool check = true;
-
-    if(s.length()!= t.length())
-    {
-        return false;
-    }
-
-    else
-    {
-        int* alp = new int[26];
-
-        for(int k=0 ; k<26 ; k++)
+        // can never be an anagram
+        if(s.length() != t.length())
         {
-            alp[k] = 0;
-        }
-
-        for(int i=0 ;i<s.length() ; i++)
-        {
-            alp[(char)s[i]-'a']++;
-        }
-
-        for(int i=0 ; i<t.length() ; i++)
-        {
-            alp[(char)t[i]-'a']--;
+            return false;
         }
 
 
-        for(int i=0 ; i<26; i++)
+        vector<int> hmap1(26,0);
+        vector<int> hmap2(26,0);
+
+        for(int i=0 ; i<s.length(); i++)
         {
-            if(alp[i]!=0)
+            hmap1[s[i]-'a']++;
+            hmap2[t[i]-'a']++;
+        }
+
+        for(int i=0 ; i<hmap1.size(); i++)
+        {
+            if(hmap1[i]!=hmap2[i])
             {
-                check = false;
-                break;
+                return false;
             }
         }
 
-        return check;
+        return true;
 
+
+        
     }
-}
 };
