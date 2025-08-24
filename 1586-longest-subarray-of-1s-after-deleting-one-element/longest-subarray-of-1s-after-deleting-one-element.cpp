@@ -1,17 +1,19 @@
 class Solution {
 public:
-    int longestSubarray(vector<int>& nums){
+    int longestSubarray(vector<int>& nums) {
 
-        int longes = INT_MIN;
+        int longest = INT_MIN;
+
+        // similar to flipping at max one zero problem, only diff is we remove the zero instead of flipping
 
         int l = 0;
         int r = 0;
-        int zeroes = 0;
         int n = nums.size();
-        int len = 0;
+
+        int zeroes = 0;
 
         while(r<n)
-        {   
+        {
             if(nums[r] == 0)
             {
                 zeroes++;
@@ -26,17 +28,12 @@ public:
                 l++;
             }
 
-            len = r-l+1;
-            longes = max(longes,len-1);
+            int len = (r-l); // since we remove the zero instead of flipping
+            longest = max(longest,len);
             r++;
         }
 
-        if(longes == INT_MIN)
-        {
-            return nums.size()-1;
-        }
-
-        return longes;
+        return longest;
         
     }
 };
