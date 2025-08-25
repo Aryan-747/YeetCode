@@ -12,37 +12,36 @@ class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
 
-        // brute force (swapping data instead of nodes)
-
+        // using dummy node
         if(head == nullptr || head->next == nullptr)
         {
             return head;
         }
 
-        ListNode* odd = head;
-        ListNode* even = head->next;
+        ListNode* dumby = new ListNode(-1);
+        dumby->next = head;
 
-        while(even!=nullptr && even->next !=nullptr)
+        ListNode* dum = dumby;
+        ListNode* curr = head;
+
+
+        while(curr!=nullptr && curr->next!=nullptr)
         {
-            int temp = odd->val;
-            odd->val = even->val;
-            even->val = temp;
+            ListNode* nextnode = curr->next;
+            dum->next = nextnode;
+            curr->next = nextnode->next;
+            nextnode->next = curr;
 
-            odd = odd->next->next;
-            even = even->next->next;
+            dum = curr;
+            curr = curr->next;
         }
-        
-        if(even)
-        {
-            int temp = odd->val;
-            odd->val = even->val;
-            even->val = temp;
-        }
-        
 
-        
 
-        return head;
+
+
+
+
+        return dumby->next;
         
     }
 };
