@@ -34,10 +34,11 @@ public:
         }
 
         // edge case
+        /*
         if(maxlen == INT_MIN)
         {
             return -1;
-        }
+        }*/
 
         return maxlen;
         
