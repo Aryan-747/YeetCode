@@ -39,7 +39,7 @@ public:
             }
         }
 
-        return t1; // first node is the first intersection point
+        return t1;
         
     }
 };
