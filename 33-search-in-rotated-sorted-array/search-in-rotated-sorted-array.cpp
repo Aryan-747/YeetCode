@@ -5,6 +5,8 @@ public:
         int low = 0;
         int high = arr.size()-1;
 
+        // implementing binary search 
+
         while(low<=high)
         {
             int mid = (low+high)/2;
@@ -14,20 +16,21 @@ public:
                 return mid;
             }
 
-            if(arr[low]<=arr[mid])
+            if(arr[low]<=arr[mid]) // sorted half
             {
-                if(target>=arr[low] && target<arr[mid])
+                if(target>=arr[low] && target<=arr[mid])
                 {
-                    high = mid -1;
+                    high = mid-1;
                 }
                 else
                 {
                     low = mid +1;
                 }
             }
-            else
+
+            else // rotated half
             {
-                if(target>arr[mid] && target<=arr[high])
+                if(target>=arr[mid] && target<=arr[high])
                 {
                     low = mid +1;
                 }
@@ -36,9 +39,10 @@ public:
                     high = mid -1;
                 }
             }
+
         }
 
-        return -1;
+        return -1; // not found
         
     }
 };
