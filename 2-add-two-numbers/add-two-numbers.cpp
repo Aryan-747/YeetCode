@@ -21,8 +21,9 @@ public:
         int carry = 0;
 
         while(t1 || t2)
-        {
-            int sum = carry;
+        {   
+            int sum = 0;
+            sum += carry;
 
             if(t1)
             {
