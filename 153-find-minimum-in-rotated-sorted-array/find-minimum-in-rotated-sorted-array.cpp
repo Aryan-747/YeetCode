@@ -14,13 +14,13 @@ public:
             if(nums[low]<=nums[mid]) // left half is sorted
             {
                 mini = min(mini,nums[low]);
-                // check for min on right half now
+                // check for min in right half now
                 low = mid +1;
             }
             else
             {
                 mini = min(mini,nums[mid]);
-                // check for min on left half
+                // check for min in left half
                 high = mid - 1;
             }
 
