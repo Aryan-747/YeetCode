@@ -1,29 +1,34 @@
 class Solution {
 public:
-    int findMin(vector<int>& arr) {
-
-        int low = 0;
-        int high = arr.size()-1;
+    int findMin(vector<int>& nums) {
 
         int mini = INT_MAX;
+
+        int low = 0;
+        int high = nums.size()-1;
+        
         while(low<=high)
         {
             int mid = (low+high)/2;
 
-            if(arr[low]<=arr[mid])
+            if(nums[low]<=nums[mid]) // left half is sorted
             {
-                mini = min(mini,arr[low]);
+                mini = min(mini,nums[low]);
+                // check for min on right half now
                 low = mid +1;
             }
-
             else
             {
-                mini = min(mini,arr[mid]);
-                high = mid -1;
+                mini = min(mini,nums[mid]);
+                // check for min on left half
+                high = mid - 1;
             }
+
         }
 
         return mini;
+
+
         
     }
 };
