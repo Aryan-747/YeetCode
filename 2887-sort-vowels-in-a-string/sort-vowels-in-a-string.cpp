@@ -35,6 +35,7 @@ public:
 
         vector<char> vows;
 
+        // inserting all vowels in a vector
         for(char x : s)
         {
             if(isvow(x))
@@ -43,6 +44,7 @@ public:
             }
         }
 
+        // sorting the vector
         sort(vows.begin(),vows.end());
 
         int vid = 0;
