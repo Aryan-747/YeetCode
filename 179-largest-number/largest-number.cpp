@@ -1,32 +1,41 @@
-bool myComparemethod(string s1, string s2)
-{
-    return (s1+s2)>(s2+s1); // returning if first concatenation is bigger than second
-}
+// declaring custom comparator globally
 
+bool myComp(string s1, string s2)
+{
+    if((s1+s2)>(s2+s1))
+    {
+        return 1;
+    }
+    
+    return 0;
+}
 
 
 class Solution {
 public:
     string largestNumber(vector<int>& nums) {
 
-        vector<string> snums;
+        string ans = "";
 
-        for(int x: nums)
+        vector<string> snums; // converting integer to string
+
+        for(int x : nums)
         {
-            snums.push_back(to_string(x)); // type conversion and storing in string form
+            snums.push_back(to_string(x));
         }
 
-        sort(snums.begin(),snums.end(),myComparemethod); // sorting using custom comparator declared globally (outside class)
+        sort(snums.begin(),snums.end(),myComp); // sorting with custom comparator
 
         // edge case
+
         if(snums[0] == "0")
         {
             return "0";
         }
 
-        string ans = ""; // empty string to store answer
+        // putting ans in string 
 
-        for(string x: snums)
+        for(string x : snums)
         {
             ans+=x;
         }
