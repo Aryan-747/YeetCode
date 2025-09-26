@@ -11,31 +11,33 @@
 class Solution {
 public:
     ListNode* oddEvenList(ListNode* head) {
-
-        // edge case
+        
+        // if single node or nullptr
         if(head == nullptr || head->next == nullptr)
         {
             return head;
         }
 
-        ListNode* oddhead = head; // first odd node;
-        ListNode* odd = oddhead;
-        ListNode* evenhead = head->next; // first even node;
-        ListNode* even = evenhead;
+        ListNode* evenhead = head->next; // evenhead;
+        ListNode* oddhead = head; // oddhead
 
 
-        while(even!=nullptr && even->next != nullptr)
+        ListNode* evenmover = evenhead;
+        ListNode* oddmover = oddhead;
+
+
+
+        while(evenmover!=nullptr && evenmover->next!=nullptr)
         {
-            odd->next = odd->next->next;
-            even->next = even->next->next;
+            oddmover->next = oddmover->next->next;
+            evenmover->next = evenmover->next->next;
 
-            odd = odd->next;
-            even = even->next;
+            oddmover = oddmover->next; // moving ahead
+            evenmover = evenmover->next; // moving ahead
         }
 
-        // pointing last odd node to first even node;
 
-        odd->next = evenhead;
+        oddmover->next = evenhead; // making connection
 
         return head;
         
