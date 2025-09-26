@@ -11,37 +11,38 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
+        
+        ListNode* curr = head;
 
-        // using dummy node
+        // single node or nullptr
         if(head == nullptr || head->next == nullptr)
         {
             return head;
         }
 
-        ListNode* dumby = new ListNode(-1);
-        dumby->next = head;
-
-        ListNode* dum = dumby;
-        ListNode* curr = head;
-
-
-        while(curr!=nullptr && curr->next!=nullptr)
+        // if two nodes
+        if(head->next->next == nullptr)
         {
-            ListNode* nextnode = curr->next;
-            dum->next = nextnode;
-            curr->next = nextnode->next;
-            nextnode->next = curr;
+            int data = head->val;
+            head->val = head->next->val;
+            head->next->val = data;
 
-            dum = curr;
-            curr = curr->next;
+            return head;
         }
 
 
 
+        while(curr!=nullptr && curr->next != nullptr)
+        {
 
+            int data = curr->val;
+            curr->val = curr->next->val;
+            curr->next->val = data;
 
+            curr = curr->next->next;
 
-        return dumby->next;
-        
+        }
+
+        return head;
     }
 };
