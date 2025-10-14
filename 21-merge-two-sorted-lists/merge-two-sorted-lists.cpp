@@ -11,15 +11,14 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        
+        ListNode* dum = new ListNode(-1);
+        ListNode* mover = dum;
 
-
-        ListNode* dummy = new ListNode(-1);
-        ListNode* mover = dummy;
         ListNode* t1 = list1;
         ListNode* t2 = list2;
-        // condition
 
-        while(t1!=nullptr && t2!=nullptr)
+        while(t1 && t2)
         {
             if(t1->val < t2->val)
             {
@@ -36,23 +35,17 @@ public:
             }
         }
 
-        // if t1 is still left
         if(t1)
         {
             mover->next = t1;
         }
 
-        else
+        if(t2)
         {
             mover->next = t2;
         }
 
-        // new head = dummy->next;
 
-        ListNode* deleteme = dummy;
-        dummy = dummy->next;
-        delete deleteme; // freeing memory
-        return dummy;
-        
+        return dum->next;
     }
 };
