@@ -11,43 +11,35 @@
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
-        
-        // edge case
+
+        // Edge case
 
         if(head == nullptr || head->next == nullptr)
         {
             return head;
         }
 
-
         ListNode* curr = head;
         ListNode* prev = nullptr;
-
-        // traversing to node where reversal should start
-
-
         int cnt = 1;
 
         while(curr!=nullptr && cnt!=left)
         {
-
             cnt++;
             prev = curr;
             curr = curr->next;
         }
 
         // storing important pointers
-
+        ListNode* pts = prev; // Pointer to start
         ListNode* start = curr;
-        ListNode* pts = prev; // pointer to start
 
-        prev = nullptr; // resetting prev;
+        prev = nullptr; // resetting prev
 
-        // reversal algo
+        // basic reversal logic
         while(cnt<right+1 && curr!=nullptr)
         {
-
-            ListNode *next = curr->next;
+            ListNode* next = curr->next;
             curr->next = prev;
 
             prev = curr;
@@ -56,16 +48,14 @@ public:
         }
 
         start->next = curr;
-
-        if(pts == nullptr) // left was one
+        if(pts == nullptr) // Reversal started from first node, so prev is new head
         {
-            return prev; // prev is new head
+            head = prev;
+            return head;
         }
 
+        // connecting to new node
         pts->next = prev;
-
         return head;
-        
-        
     }
 };
